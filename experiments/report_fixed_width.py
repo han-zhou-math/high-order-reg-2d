@@ -40,7 +40,7 @@ def main():
     ax.set(xlabel='κ',ylabel='maximum full-kernel alias defect',title='Smooth combined kernel, p=7 (90-digit arithmetic)');ax.grid(alpha=.25)
     fig.tight_layout();fig.savefig(ROOT/'discrete_moments/full_kernel_alias.png',dpi=180);plt.close(fig)
     text=['# Fixed-width regularization: diagnostic report\n',
-'''The tests support **κ between 2 and 4 as a practical range for these problems**, with κ=2–3 particularly attractive for all-grid work. This is a discrete-resolution study, not an additional verification of the continuous p=7 theorem. The manuscript, production runs, geometries, densities, and kernel implementations have not been changed.
+'''The tests support **κ between 2 and 4 as a practical range for these problems**, with κ=2–3 particularly attractive for all-grid work. This is a discrete-resolution study, not an additional verification of the continuous p=7 theorem. The production runs, geometries, densities, and kernel implementations have not been changed.
 
 ## Scope and reproducibility
 
@@ -234,9 +234,6 @@ The comparison is practical: the fixed-width rule uses a smaller width than prod
 3. **Is there a broad robust interval?** Yes, 2–4 over the tested practical resolutions, subject to the pressure numerical floor. κ=1.5 can yield a smaller error at one N but fails the quadrature-separation test and is not the robust recommendation.
 4. **Does fixed κ eventually lose nominal high-order behavior?** It demonstrably does for κ=1 and 1.5. Nonzero full-kernel alias coefficients support eventual lower-order behavior in a local single-layer model for larger finite κ. We do not claim a universal asymptotic theorem for all corrected curved operators.
 5. **Is crossover inside or below practical double precision?** It is visible above roundoff for κ=1 and 1.5. For κ≥2, the tested circle reaches roundoff first; its leading local alias prediction is below the observed floating-point floor at the fine resolutions. The smallest computed coefficients strongly explain the delayed crossover for larger κ. Stokes pressure reaches a spectral-differentiation/implementation floor earlier, which must not be mistaken for this asymptotic crossover.
-6. **Is the rule worth mentioning?** Yes: a short practical-resolution subsection with the three-panel complete-problem figure would complement the primary q<1 tests. Describe high accuracy over the tested range, and retain the distinction from asymptotic order. The raw D₀ diagnostic must not be presented as the full-kernel quadrature defect: its logarithmic singularity changes the interpretation fundamentally. Keep the dense raw moment, phase, and sweep diagnostics in the repository.
-
-**No manuscript integration has been performed.**
 ''')
     # Markdown math uses single backslashes.
     (ROOT/'REPORT.md').write_text('\n'.join(text).replace('\\\\','\\'))

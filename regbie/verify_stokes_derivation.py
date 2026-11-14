@@ -1,6 +1,6 @@
-"""Checks for docs/regularized_stokes_2d.tex; not a general Stokes solver.
+"""Checks of the regularized Stokes kernels; not a general Stokes solver.
 
-Run: OPENBLAS_NUM_THREADS=1 python3 verify_stokes_derivation.py
+Run: OPENBLAS_NUM_THREADS=1 python3 -m regbie.verify_stokes_derivation
 Uses the existing scalar coefficients and an independent Stokes representation.
 """
 import csv

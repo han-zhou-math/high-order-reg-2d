@@ -1,4 +1,4 @@
-"""Small version of the paper's convergence tests for the kite and starfish.
+"""Small version of the convergence tests for the kite and starfish.
 
 Laplace: S f + D g for the nonconvex kite, with densities taken from an
 exact harmonic solution. Stokes: the Stokeslet and stresslet integrals

@@ -724,7 +724,7 @@ def write_fitted_metrics(output, laplace_rows, stokes_rows,
 
 
 def copy_submission_assets(output, submission_root):
-    """Copy generated artifacts below the self-contained manuscript root."""
+    """Copy generated figures and tables below an output root."""
     figure_dir = submission_root / "figures"
     table_dir = submission_root / "generated_tables"
     figure_dir.mkdir(parents=True, exist_ok=True)

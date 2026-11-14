@@ -1,4 +1,4 @@
-"""Physical panel dimensions shared by the revised manuscript's error plots."""
+"""Physical panel dimensions shared by the error plots."""
 import re
 
 import matplotlib.pyplot as plt
@@ -45,7 +45,6 @@ def align_panels(fig, axes, columns=2, rows=1, center_last=False):
 def save_panels(fig, output):
     """Export one consistently sized, self-contained PDF per plot.
 
-    Panel letters and grouping belong to the manuscript, not these assets.
     The fixed export box preserves identical axes dimensions in every PDF.
     """
     axes = list(fig.axes)

@@ -1,6 +1,5 @@
 """2D Laplace single layer, G(r)=+log(r)/(2*pi).
 
-Kernels from regularized_2d.pdf, equations (19), (26)--(32).
 Only smooth, closed, 2*pi-periodic parameterizations are assumed.
 """
 import numpy as np
@@ -19,7 +18,7 @@ def coefficients(order, lam):
         raise ValueError("lam must be finite and nonnegative")
     if order == 1:
         return ()
-    # Recurrence (19) near the curve; positive integral (17) avoids
+    # Recurrence for H_j near the curve; their positive integral avoids
     # cancellation for large lambda. This branch is rarely needed for b=O(delta).
     z = lam**2
     h0 = 2 * (1 - np.sqrt(np.pi) * lam * erfcx(lam))

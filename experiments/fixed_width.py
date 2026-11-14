@@ -1,4 +1,4 @@
-"""Isolated fixed-width diagnostics; never modifies production data or manuscript.
+"""Isolated fixed-width diagnostics; never modifies production data.
 
 Run with --stage circle/complete/sweep/moments. All errors maximize over
 97 distributed closest-point parameters for each separately saved phase/offset.

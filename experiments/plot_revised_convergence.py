@@ -1,7 +1,7 @@
-"""Render the revised paper's circle, kite, and starfish convergence figures.
+"""Render the circle, kite, and starfish convergence figures.
 
 Run from the repository root with python3 -m experiments.plot_revised_convergence.
-The figures use saved errors and the fit ranges documented in the captions.
+The figures use saved errors and the recorded fit ranges.
 """
 import matplotlib
 matplotlib.use("Agg")

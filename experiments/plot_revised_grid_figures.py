@@ -1,8 +1,7 @@
-"""Regenerate the revised Cartesian-grid figures from existing results.
+"""Regenerate the Cartesian-grid figures from existing results.
 
 Run from the repository root with python3 -m experiments.plot_revised_grid_figures.
-The convergence panels use the saved JSON reports. The manuscript pairs those
-panels with the maps from the original combined figure.
+The convergence panels use the saved JSON reports.
 """
 import json
 from pathlib import Path

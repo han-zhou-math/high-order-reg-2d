@@ -1,4 +1,4 @@
-"""Checks for docs/regularized_double_layer_2d.tex (not a general DLP solver)."""
+"""Checks of the regularized double-layer kernel (not a general DLP solver)."""
 import csv
 from pathlib import Path
 import numpy as np

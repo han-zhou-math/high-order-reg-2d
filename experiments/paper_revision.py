@@ -1,4 +1,4 @@
-"""Focused reproducible studies for the review revision.
+"""Focused reproducible studies: Stokes corrections, near-curve limits, choice of delta, timing.
 
 Uses current scaled kite/starfish geometry; no existing data are overwritten.
 Run: OPENBLAS_NUM_THREADS=1 MPLCONFIGDIR=/tmp/reg-bie-mpl python3 -m
@@ -99,7 +99,7 @@ def physical_spacing(geometry, n):
 
 
 def reduced_radial_derivative(u, order):
-    """Stable A' for the paper's reduced on-curve stresslet, coefficients frozen."""
+    """Stable A' for the reduced on-curve stresslet, coefficients frozen."""
     import math
     cs = {3: (), 5: (2/3,), 7: (4/3, 4/15)}[order]
     u = np.asarray(u)

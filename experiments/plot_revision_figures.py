@@ -1,4 +1,4 @@
-"""Regenerate the revised Stokes and width-selection plots from saved results.
+"""Regenerate the Stokes and width-selection plots from saved results.
 
 Run from the repository root:
 
@@ -121,7 +121,7 @@ def plot_width_selection():
 
 
 def plot_near_curve_limits():
-    """Section 5.5: errors against exact solutions on both sides of the curve."""
+    """Errors against exact solutions on both sides of the curve."""
     rows = _load("manufactured_tiny_lambda.csv")
     fig, ax = plt.subplots(figsize=(4.9, 2.85))
     for field, _, color, marker in FIELDS:
@@ -149,7 +149,7 @@ def plot_near_curve_limits():
 
 
 def plot_oncurve_stresslet():
-    """Section 5.4.2: stresslet integral at targets on the curve."""
+    """Stresslet integral at targets on the curve."""
     rows = _load("reduced_stresslet.csv")
     fig, ax = plt.subplots(figsize=(4.9, 2.85))
     for order, (color, marker) in STYLE.items():
@@ -173,7 +173,7 @@ def plot_oncurve_stresslet():
 
 
 def plot_allgrid_widths():
-    """Section 6.8: compare two smoothing widths on the same Cartesian grids."""
+    """Compare two smoothing widths on the same Cartesian grids."""
     with (ROOT / "allgrid_width_comparison.json").open() as stream:
         data = json.load(stream)
     columns = {name: i for i, name in enumerate(data["columns"])}

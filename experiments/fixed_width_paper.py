@@ -1,4 +1,4 @@
-"""Saved-data panels and explicitly selected resolved ranges for the paper."""
+"""Saved-data panels and explicitly selected resolved ranges."""
 import csv
 import json
 from pathlib import Path
@@ -26,7 +26,7 @@ def series(geometry, field, kappa):
 
 
 def resolved(row):
-    # Empirical selection for this paper, not a universal quadrature criterion.
+    # Empirical selection for these tests, not a universal quadrature criterion.
     return row['doubling'] < .1 * row['error'] and row['error'] > 2e-15
 
 
