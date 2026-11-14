@@ -10,19 +10,16 @@ corrections depending on λ = b/δ (b the signed distance to the curve) cancel
 the leading moments of the regularization error, so the error is O(δ^p) plus
 a quadrature error that is negligible when δ/h is large enough.
 
-The code reproduces the numerical results in the accompanying paper by
-J. T. Beale and H. Zhou (in preparation).
-
 ## Layout
 
 | Folder | Contents |
 |---|---|
 | `regbie/` | Core kernels. `regularized_slp.py`: coefficients a_k(λ), regularized G_δ and the single layer. `regularized_dlp.py`: the double layer. `surface_operators.py`: radial factors for gradients and the Stokes kernels. `verify_stokes_derivation.py`: Stokes moment N₀ and checks. `all_grid_reconstruction.py`: Cartesian-grid stencils and solvers. |
-| `experiments/` | Drivers, saved-data analysis and plotting for every test in the paper (circle, kite, starfish, corrections, near-curve limits, choice of δ, timing, Cartesian grid). |
+| `experiments/` | Drivers, saved-data analysis and plotting for the numerical tests (circle, kite, starfish, corrections, near-curve limits, choice of δ, timing, Cartesian grid). |
 | `examples/` | Two short runs with their saved output in `examples/output/`. |
 | `verification/` | Earlier convergence and derivation checks (circle, ellipse, starfish; double layer; Stokes). |
 | `tests/` | Unit and regression tests (`unittest`). |
-| `results/` | Saved CSV/JSON data behind the paper's figures and tables. Grid-field arrays (`.npz`) are not included. |
+| `results/` | Saved CSV/JSON results of the numerical tests. Grid-field arrays (`.npz`) are not included. |
 
 ## Requirements
 
@@ -54,7 +51,7 @@ python3 -m examples.kite_and_starfish     # about 15 s
 the unit circle with δ = h^q at 97 targets with λ = −0.5, 0, 0.5, and shows
 errors decreasing as h², h⁴, h⁵ for p = 3, 5, 7.
 
-`kite_and_starfish` is a shorter version of the paper's main tests: S f + D g
+`kite_and_starfish` is a shorter version of the main tests in `experiments/`: S f + D g
 for the nonconvex kite, and the Stokes velocity and pressure for the starfish,
 each compared with an exact solution. Its errors agree with the saved
 values in `results/swapped_low_order/local/errors.csv`.
@@ -77,7 +74,7 @@ arclength; `b` is the signed distance from each target to the curve
 normals, and for targets on the curve the double layer gives the average of
 the two one-sided limits.
 
-## Reproducing the paper's figures
+## Reproducing the figures
 
 Plotting reads only the saved data and writes PDFs to `figures/`:
 
