@@ -1,0 +1,54 @@
+{
+  "m_grid": 512,
+  "h_c": 0.005847953216374269,
+  "geometry": "scaled_kite_low_order_r0895",
+  "mode": "bie",
+  "rule": "matched",
+  "kappa": 1.0,
+  "delta": 0.020431566925137225,
+  "delta_over_h": 3.493797944198466,
+  "delta_over_chord": 3.4976796480466636,
+  "n_gamma": 1458,
+  "chord_max": 0.0058414631930478736,
+  "chord_mean": 0.0038157238363086296,
+  "spacing_ratio": 0.9988902060111864,
+  "direct_targets": 4880,
+  "crossing_count": 2440,
+  "gradient_crossing_count": 2440,
+  "union_count": 2440,
+  "direct_seconds": 50.47554410700104,
+  "laplace": {
+    "inf": 2.882929843892046e-06,
+    "l2": 7.15902034211162e-08
+  },
+  "direct_laplace": {
+    "inf": 2.882929843892046e-06,
+    "l2": 4.358612387401272e-08
+  },
+  "crossing_direct_laplace": {
+    "inf": 2.882929843892046e-06,
+    "l2": 4.1778227018138875e-08
+  },
+  "laplace_source": {
+    "inf": 0.16394233335904573,
+    "l2": 0.0017655692695828348
+  },
+  "outer_laplace": {
+    "inf": 5.551115123125783e-17,
+    "l2": 5.1259056702729226e-18
+  },
+  "total_seconds": 50.49562412701198,
+  "h_gamma": 0.0043094549431958755,
+  "maximum_node": {
+    "index": [
+      404,
+      106
+    ],
+    "point": [
+      -0.8801169590643275,
+      0.8625730994152043
+    ],
+    "error": 2.882929843892046e-06,
+    "in_direct_halo": true
+  }
+}

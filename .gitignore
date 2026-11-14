@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+# Regenerated outputs
+/figures/
+results/**/geometry_cache/
+*.npz
+*.npy

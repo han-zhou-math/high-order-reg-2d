@@ -1,0 +1,123 @@
+{
+  "m_grid": 512,
+  "h_c": 0.005847953216374269,
+  "geometry": "scaled_starfish_low_order_r0895",
+  "mode": "exact_gradient",
+  "rule": "matched",
+  "kappa": 1.0,
+  "delta": 0.02540988960844465,
+  "delta_over_h": 4.345091123044035,
+  "delta_over_chord": 4.351538187303189,
+  "n_gamma": 1344,
+  "chord_max": 0.005839289123690791,
+  "chord_mean": 0.004618983813508854,
+  "spacing_ratio": 0.9985184401511253,
+  "direct_targets": 6522,
+  "crossing_count": 2700,
+  "gradient_crossing_count": 3820,
+  "union_count": 3822,
+  "direct_seconds": 1.2888447790173814,
+  "pressure": {
+    "inf": 5.3165805091737184e-14,
+    "l2": 5.2430574083409275e-14
+  },
+  "direct_pressure": {
+    "inf": 0.0,
+    "l2": 0.0
+  },
+  "crossing_direct_pressure": {
+    "inf": 0.0,
+    "l2": 0.0
+  },
+  "pressure_source": {
+    "inf": 0.0,
+    "l2": 0.0
+  },
+  "outer_pressure": {
+    "inf": 0.0,
+    "l2": 0.0
+  },
+  "pressure_reconstructed": {
+    "inf": 5.3165805091737184e-14,
+    "l2": 5.3960587536146367e-14
+  },
+  "gradient": {
+    "inf": 0.0,
+    "l2": 0.0
+  },
+  "direct_velocity": {
+    "inf": 0.0,
+    "l2": 0.0
+  },
+  "velocity_source_crossing": {
+    "inf": 0.0,
+    "l2": 0.0
+  },
+  "crossing_direct_velocity": {
+    "inf": 0.0,
+    "l2": 0.0
+  },
+  "velocity": {
+    "inf": 3.114767239419204e-13,
+    "l2": 3.7691830388504373e-13
+  },
+  "stripe_rows": [
+    {
+      "requested_y": 0.0,
+      "actual_y": 0.0029239766081869956,
+      "row": 257,
+      "max_abs": 3.634592626866606e-14,
+      "zeros": 15,
+      "finite": true
+    },
+    {
+      "requested_y": 0.005847953216374269,
+      "actual_y": 0.008771929824561209,
+      "row": 258,
+      "max_abs": 3.602673714908633e-14,
+      "zeros": 15,
+      "finite": true
+    },
+    {
+      "requested_y": -0.005847953216374269,
+      "actual_y": -0.0029239766081872176,
+      "row": 256,
+      "max_abs": 3.6665115388245795e-14,
+      "zeros": 15,
+      "finite": true
+    },
+    {
+      "requested_y": 0.011695906432748537,
+      "actual_y": 0.014619883040935644,
+      "row": 259,
+      "max_abs": 3.567979245389097e-14,
+      "zeros": 14,
+      "finite": true
+    },
+    {
+      "requested_y": -0.011695906432748537,
+      "actual_y": -0.014619883040935644,
+      "row": 254,
+      "max_abs": 3.7289615839597445e-14,
+      "zeros": 14,
+      "finite": true
+    },
+    {
+      "requested_y": 0.1,
+      "actual_y": 0.10233918128654951,
+      "row": 274,
+      "max_abs": 3.072542220650121e-14,
+      "zeros": 18,
+      "finite": true
+    },
+    {
+      "requested_y": -0.1,
+      "actual_y": -0.10233918128654973,
+      "row": 239,
+      "max_abs": 4.168887457467463e-14,
+      "zeros": 18,
+      "finite": true
+    }
+  ],
+  "total_seconds": 2.6667444840131793
+}

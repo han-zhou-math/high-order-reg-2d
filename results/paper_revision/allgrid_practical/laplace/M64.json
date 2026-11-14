@@ -1,0 +1,53 @@
+{
+  "m_grid": 64,
+  "h_c": 0.046153846153846156,
+  "geometry": "scaled_kite_low_order_r0895",
+  "mode": "bie",
+  "rule": "matched",
+  "kappa": 2,
+  "delta": 0.09230769230769231,
+  "delta_over_h": 2.0,
+  "delta_over_chord": 2.081370068621241,
+  "n_gamma": 192,
+  "chord_max": 0.04434948580232038,
+  "chord_mean": 0.02897324033590698,
+  "spacing_ratio": 0.9609055257169414,
+  "direct_targets": 608,
+  "crossing_count": 304,
+  "gradient_crossing_count": 304,
+  "union_count": 304,
+  "direct_seconds": 0.26793968898709863,
+  "laplace": {
+    "inf": 0.0007004054965167733,
+    "l2": 0.00012121665553476052
+  },
+  "direct_laplace": {
+    "inf": 0.0007004054965167733,
+    "l2": 5.0792128782157136e-05
+  },
+  "crossing_direct_laplace": {
+    "inf": 0.0007004054965167733,
+    "l2": 4.802322446988327e-05
+  },
+  "laplace_source": {
+    "inf": 1.0541410283303705,
+    "l2": 0.07230450351945487
+  },
+  "outer_laplace": {
+    "inf": 4.85722573273506e-17,
+    "l2": 1.4672071426024545e-17
+  },
+  "total_seconds": 0.2753189529757947,
+  "error_maximum_node": {
+    "index": [
+      48,
+      14
+    ],
+    "point": [
+      -0.8538461538461538,
+      0.7153846153846155
+    ],
+    "error": 0.0007004054965167733,
+    "in_direct_halo": true
+  }
+}

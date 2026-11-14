@@ -1,0 +1,13 @@
+{
+  "python": "3.10.12",
+  "numpy": "2.1.1",
+  "scipy": "1.14.1",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "cpu_model": "11th Gen Intel(R) Core(TM) i9-11900H @ 2.50GHz",
+  "curve_names": [
+    "scaled_kite_low_order_r0895",
+    "scaled_starfish_low_order_r0895"
+  ],
+  "existing_evaluator_discrepancy": 1.7477199122851911e-15,
+  "note": "Single-thread OPENBLAS. Timing medians over three complete evaluations, no cached projection."
+}

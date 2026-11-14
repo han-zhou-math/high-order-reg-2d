@@ -1,0 +1,38 @@
+{
+  "Laplace": {
+    "rate": 5.887786572294191,
+    "levels": [
+      128,
+      256,
+      512
+    ],
+    "field": "laplace"
+  },
+  "Pressure": {
+    "rate": 5.8415503484825235,
+    "levels": [
+      128,
+      256,
+      512
+    ],
+    "field": "pressure"
+  },
+  "Velocity, numerical pressure gradient": {
+    "rate": 3.9337865417658278,
+    "levels": [
+      512,
+      768,
+      1024
+    ],
+    "field": "velocity"
+  },
+  "Velocity, exact pressure gradient": {
+    "rate": 3.9338709230754376,
+    "levels": [
+      512,
+      768,
+      1024
+    ],
+    "field": "velocity"
+  }
+}

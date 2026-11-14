@@ -1,0 +1,148 @@
+{
+  "m_grid": 768,
+  "h_c": 0.0039011703511053317,
+  "geometry": "scaled_starfish_low_order_r0895",
+  "mode": "bie",
+  "rule": "matched",
+  "kappa": 1.0,
+  "delta": 0.01620981657037363,
+  "delta_over_h": 4.155116314205773,
+  "delta_over_chord": 4.163942670603853,
+  "n_gamma": 2016,
+  "chord_max": 0.003892900996166426,
+  "chord_mean": 0.0030793455661160094,
+  "spacing_ratio": 0.9978802886839939,
+  "direct_targets": 9780,
+  "crossing_count": 4052,
+  "gradient_crossing_count": 5728,
+  "union_count": 5728,
+  "direct_seconds": 226.2924956700008,
+  "pressure": {
+    "inf": 1.1476261450012529e-06,
+    "l2": 6.957158784053836e-08
+  },
+  "direct_pressure": {
+    "inf": 1.1476261450012529e-06,
+    "l2": 2.615768293896092e-08
+  },
+  "crossing_direct_pressure": {
+    "inf": 1.1476261450012529e-06,
+    "l2": 2.4747119435586893e-08
+  },
+  "pressure_source": {
+    "inf": 0.11611420954250207,
+    "l2": 0.001763395716925721
+  },
+  "outer_pressure": {
+    "inf": 2.200930410145574e-17,
+    "l2": 1.4461418609365303e-18
+  },
+  "pressure_reconstructed": {
+    "inf": 1.617290853545006e-06,
+    "l2": 7.759336278891868e-08
+  },
+  "gradient": {
+    "inf": 8.179118066867596e-05,
+    "l2": 2.6488019966275023e-06
+  },
+  "direct_velocity": {
+    "inf": 4.473147213372242e-06,
+    "l2": 9.994027481842431e-08
+  },
+  "velocity_source_crossing": {
+    "inf": 0.4941707646141305,
+    "l2": 0.007074832526702544
+  },
+  "crossing_direct_velocity": {
+    "inf": 4.473147213372242e-06,
+    "l2": 9.749858558534014e-08
+  },
+  "velocity": {
+    "inf": 4.473147213372242e-06,
+    "l2": 6.24489202433332e-07
+  },
+  "stripe_rows": [
+    {
+      "requested_y": 0.0,
+      "actual_y": -0.0019505851755525772,
+      "row": 384,
+      "max_abs": 7.44189264240136e-07,
+      "zeros": 0,
+      "finite": true
+    },
+    {
+      "requested_y": 0.0039011703511053317,
+      "actual_y": 0.0019505851755527992,
+      "row": 385,
+      "max_abs": 2.3854667982603495e-07,
+      "zeros": 0,
+      "finite": true
+    },
+    {
+      "requested_y": -0.0039011703511053317,
+      "actual_y": -0.0058517555266579535,
+      "row": 383,
+      "max_abs": 1.0665975143653306e-06,
+      "zeros": 0,
+      "finite": true
+    },
+    {
+      "requested_y": 0.007802340702210663,
+      "actual_y": 0.00975292587776333,
+      "row": 387,
+      "max_abs": 8.322026336660127e-07,
+      "zeros": 0,
+      "finite": true
+    },
+    {
+      "requested_y": -0.007802340702210663,
+      "actual_y": -0.00975292587776333,
+      "row": 382,
+      "max_abs": 9.204319793565396e-07,
+      "zeros": 0,
+      "finite": true
+    },
+    {
+      "requested_y": 0.1,
+      "actual_y": 0.0994798439531861,
+      "row": 410,
+      "max_abs": 8.619507735341259e-08,
+      "zeros": 0,
+      "finite": true
+    },
+    {
+      "requested_y": -0.1,
+      "actual_y": -0.09947984395318588,
+      "row": 359,
+      "max_abs": 8.952462943190298e-08,
+      "zeros": 0,
+      "finite": true
+    }
+  ],
+  "total_seconds": 229.66492921300232,
+  "h_gamma": 0.003116659378561303,
+  "pressure_maximum_node": {
+    "index": [
+      460,
+      483
+    ],
+    "point": [
+      0.38426527958387524,
+      0.2945383615084525
+    ],
+    "error": 1.1476261450012529e-06,
+    "in_direct_halo": true
+  },
+  "velocity_maximum_node": {
+    "index": [
+      311,
+      484
+    ],
+    "point": [
+      0.3881664499349806,
+      -0.28673602080624194
+    ],
+    "error": 4.473147213372242e-06,
+    "in_direct_halo": true
+  }
+}
