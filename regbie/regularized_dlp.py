@@ -11,7 +11,7 @@ def normals(derivatives):
     return np.stack((dx[..., 1], -dx[..., 0]), axis=-1)/speed[..., None]
 
 
-def smoothing_over_r2(r2, delta, order, b=0., surface=False):
+def smoothing_over_r2(r2, delta, order, b=0.):
     """Stable T(r²/delta²)/r², including r=0; b broadcasts with r2."""
     if order not in (3, 5, 7):
         raise ValueError('order must be 3, 5, or 7')
@@ -22,13 +22,8 @@ def smoothing_over_r2(r2, delta, order, b=0., surface=False):
     if np.any(r2 < 0) or not np.all(np.isfinite(r2)) or not np.all(np.isfinite(b)):
         raise ValueError('r2 and b must be finite, with r2 nonnegative')
     u = r2/delta**2
-    if surface:
-        if np.any(b != 0):
-            raise ValueError('special surface kernels require b=0')
-        cs = {3: (), 5: (2/3,), 7: (4/3, 4/15)}[order]
-    else:
-        # Compute coefficients with target-sized b before broadcasting over sources.
-        cs = coefficients(order, np.abs(original_b)/delta)
+    # Compute coefficients with target-sized b before broadcasting over sources.
+    cs = coefficients(order, np.abs(original_b)/delta)
     pm1_over_u = np.zeros_like(u)
     for k, c in enumerate(cs, 1):
         pm1_over_u += (-1)**k*c*u**(k-1)
@@ -37,7 +32,7 @@ def smoothing_over_r2(r2, delta, order, b=0., surface=False):
 
 
 def double_layer(curve, density, targets, delta, n, order=7, *, closest_t,
-                 b, surface=False, chunk_size=128, subtract=True):
+                 b, chunk_size=128, subtract=True):
     """Return D off curve, or the average boundary operator K on curve.
 
     curve(t) returns positions and derivatives on a CCW 2*pi-periodic curve.
@@ -46,9 +41,12 @@ def double_layer(curve, density, targets, delta, n, order=7, *, closest_t,
     Boundary traces are this value +/- g/2 (interior/exterior).
     subtract=False integrates the differentiated kernel against g directly;
     it does not preserve the jump for targets at distance O(delta).
+
+    On the curve (b=0) the unregularized kernel n(x).(x-y)/(2*pi*|x-y|^2) is
+    smooth, with value kappa/(4*pi) at x=y, so the plain trapezoidal rule is
+    spectrally accurate there. The regularized kernel is still valid at b=0
+    and is used here so that one formula covers targets on and near the curve.
     """
-    if surface and not subtract:
-        raise ValueError('special surface kernels require density subtraction')
     if not isinstance(n, (int, np.integer)) or n < 4 or chunk_size < 1:
         raise ValueError('require integer n>=4 and positive chunk_size')
     y = np.asarray(targets, float)
@@ -68,7 +66,7 @@ def double_layer(curve, density, targets, delta, n, order=7, *, closest_t,
         stop = start+chunk_size
         r = x[None, :, :]-y[start:stop, None, :]
         r2 = np.sum(r*r, axis=-1)
-        factor = smoothing_over_r2(r2, delta, order, bt[start:stop, None], surface)
+        factor = smoothing_over_r2(r2, delta, order, bt[start:stop, None])
         numerator = np.sum(r*normal[None, :, :], axis=-1)
         answer[start:stop] += np.sum(numerator*factor*
                                     (g[None, :]-g0[start:stop, None])*weights, axis=1)

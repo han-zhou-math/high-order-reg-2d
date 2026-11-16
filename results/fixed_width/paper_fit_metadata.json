@@ -18,63 +18,63 @@
       8192,
       16384
     ],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 128,
         "h_gamma": 0.04908738521234052,
         "h_phys": 0.04908245704582536,
-        "error": 9.299915464111574e-08,
-        "doubling": 1.9567680809018384e-15
+        "error": 9.299915466887132e-08,
+        "doubling": 1.9290125052862095e-15
       },
       {
         "n": 256,
         "h_gamma": 0.02454369260617026,
         "h_phys": 0.02454307657144068,
         "error": 7.377607275094178e-10,
-        "doubling": 4.996003610813204e-16
+        "doubling": 4.85722573273506e-16
       },
       {
         "n": 512,
         "h_gamma": 0.01227184630308513,
         "h_phys": 0.012271769298309598,
-        "error": 5.7957111332385125e-12,
-        "doubling": 3.8510861166685117e-16
+        "error": 5.795766644389744e-12,
+        "doubling": 2.0816681711721685e-16
       },
       {
         "n": 1024,
         "h_gamma": 0.006135923151542565,
         "h_phys": 0.006135913525932721,
-        "error": 4.5380366131553274e-14,
-        "doubling": 5.273559366969494e-16
+        "error": 4.539424391936109e-14,
+        "doubling": 2.636779683484747e-16
       },
       {
         "n": 2048,
         "h_gamma": 0.0030679615757712823,
         "h_phys": 0.0030679603725700987,
-        "error": 6.38378239159465e-16,
-        "doubling": 6.938893903907228e-16
+        "error": 4.85722573273506e-16,
+        "doubling": 2.498001805406602e-16
       },
       {
         "n": 4096,
         "h_gamma": 0.0015339807878856412,
         "h_phys": 0.0015339806374858153,
-        "error": 5.793976409762536e-16,
-        "doubling": 7.771561172376096e-16
+        "error": 3.885780586188048e-16,
+        "doubling": 3.7470027081099033e-16
       },
       {
         "n": 8192,
         "h_gamma": 0.0007669903939428206,
         "h_phys": 0.0007669903751434416,
-        "error": 5.551115123125783e-16,
-        "doubling": 6.800116025829084e-16
+        "error": 4.0245584642661925e-16,
+        "doubling": 3.469446951953614e-16
       },
       {
         "n": 16384,
         "h_gamma": 0.0003834951969714103,
         "h_phys": 0.0003834951946219139,
-        "error": 4.3021142204224816e-16,
-        "doubling": 6.38378239159465e-16
+        "error": 2.498001805406602e-16,
+        "doubling": 1.5265566588595902e-16
       }
     ]
   },
@@ -89,71 +89,71 @@
       128,
       256,
       512,
-      1024
+      1024,
+      2048
     ],
     "excluded_n": [
-      2048,
       4096,
       8192,
       16384
     ],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 128,
         "h_gamma": 0.04908738521234052,
         "h_phys": 0.04908245704582536,
         "error": 1.5421922052449855e-06,
-        "doubling": 2.0816681711721685e-16
+        "doubling": 1.3877787807814457e-16
       },
       {
         "n": 256,
         "h_gamma": 0.02454369260617026,
         "h_phys": 0.02454307657144068,
         "error": 1.2513125188795549e-08,
-        "doubling": 3.0531133177191805e-16
+        "doubling": 2.636779683484747e-16
       },
       {
         "n": 512,
         "h_gamma": 0.01227184630308513,
         "h_phys": 0.012271769298309598,
-        "error": 9.88460147066661e-11,
-        "doubling": 3.400058012914542e-16
+        "error": 9.884607021781733e-11,
+        "doubling": 1.4224732503009818e-16
       },
       {
         "n": 1024,
         "h_gamma": 0.006135923151542565,
         "h_phys": 0.006135913525932721,
-        "error": 7.75032815703014e-13,
-        "doubling": 5.273559366969494e-16
+        "error": 7.750466934908218e-13,
+        "doubling": 2.0122792321330962e-16
       },
       {
         "n": 2048,
         "h_gamma": 0.0030679615757712823,
         "h_phys": 0.0030679603725700987,
-        "error": 6.161737786669619e-15,
-        "doubling": 6.800116025829084e-16
+        "error": 6.106226635438361e-15,
+        "doubling": 2.220446049250313e-16
       },
       {
         "n": 4096,
         "h_gamma": 0.0015339807878856412,
         "h_phys": 0.0015339806374858153,
-        "error": 6.106226635438361e-16,
-        "doubling": 7.494005416219807e-16
+        "error": 2.7755575615628914e-16,
+        "doubling": 3.191891195797325e-16
       },
       {
         "n": 8192,
         "h_gamma": 0.0007669903939428206,
         "h_phys": 0.0007669903751434416,
-        "error": 6.800116025829084e-16,
-        "doubling": 7.216449660063518e-16
+        "error": 4.718447854656915e-16,
+        "doubling": 3.3306690738754696e-16
       },
       {
         "n": 16384,
         "h_gamma": 0.0003834951969714103,
         "h_phys": 0.0003834951946219139,
-        "error": 5.273559366969494e-16,
-        "doubling": 6.106226635438361e-16
+        "error": 4.163336342344337e-16,
+        "doubling": 8.326672684688674e-17
       }
     ]
   },
@@ -176,63 +176,63 @@
       8192,
       16384
     ],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 128,
         "h_gamma": 0.04908738521234052,
         "h_phys": 0.04908245704582536,
-        "error": 1.1069976897204459e-05,
-        "doubling": 1.5959455978986625e-16
+        "error": 1.1069976897218337e-05,
+        "doubling": 9.71445146547012e-17
       },
       {
         "n": 256,
         "h_gamma": 0.02454369260617026,
         "h_phys": 0.02454307657144068,
-        "error": 9.27789238491794e-08,
-        "doubling": 3.0531133177191805e-16
+        "error": 9.27789238630572e-08,
+        "doubling": 2.3592239273284576e-16
       },
       {
         "n": 512,
         "h_gamma": 0.01227184630308513,
         "h_phys": 0.012271769298309598,
-        "error": 7.386213585203194e-10,
-        "doubling": 3.434752482434078e-16
+        "error": 7.386214140314706e-10,
+        "doubling": 1.3530843112619095e-16
       },
       {
         "n": 1024,
         "h_gamma": 0.006135923151542565,
         "h_phys": 0.006135913525932721,
         "error": 5.80245573811311e-12,
-        "doubling": 4.163336342344337e-16
+        "doubling": 1.734723475976807e-16
       },
       {
         "n": 2048,
         "h_gamma": 0.0030679615757712823,
         "h_phys": 0.0030679603725700987,
         "error": 4.542199949497672e-14,
-        "doubling": 5.967448757360216e-16
+        "doubling": 2.42861286636753e-16
       },
       {
         "n": 4096,
         "h_gamma": 0.0015339807878856412,
         "h_phys": 0.0015339806374858153,
-        "error": 6.904199434387692e-16,
-        "doubling": 7.216449660063518e-16
+        "error": 4.996003610813204e-16,
+        "doubling": 3.122502256758253e-16
       },
       {
         "n": 8192,
         "h_gamma": 0.0007669903939428206,
         "h_phys": 0.0007669903751434416,
-        "error": 5.551115123125783e-16,
-        "doubling": 7.494005416219807e-16
+        "error": 4.440892098500626e-16,
+        "doubling": 2.7755575615628914e-16
       },
       {
         "n": 16384,
         "h_gamma": 0.0003834951969714103,
         "h_phys": 0.0003834951946219139,
-        "error": 4.996003610813204e-16,
-        "doubling": 5.551115123125783e-16
+        "error": 3.157196726277789e-16,
+        "doubling": 6.938893903907228e-17
       }
     ]
   },
@@ -255,41 +255,41 @@
       8192,
       16384
     ],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 128,
         "h_gamma": 0.04908738521234052,
         "h_phys": 0.04908245704582536,
-        "error": 5.4399593829579374e-08,
-        "doubling": 4.4086262418474575e-14
+        "error": 3.2392224164068395e-07,
+        "doubling": 4.463096558993129e-14
       },
       {
         "n": 256,
         "h_gamma": 0.02454369260617026,
         "h_phys": 0.02454307657144068,
-        "error": 4.3125192306092686e-10,
-        "doubling": 2.3349377986647823e-15
+        "error": 2.582657365746144e-09,
+        "doubling": 3.774758283725532e-15
       },
       {
         "n": 512,
         "h_gamma": 0.01227184630308513,
         "h_phys": 0.012271769298309598,
-        "error": 3.383515689847627e-12,
-        "doubling": 4.753142324176451e-16
+        "error": 2.0290991109561674e-11,
+        "doubling": 7.216449660063518e-16
       },
       {
         "n": 1024,
         "h_gamma": 0.006135923151542565,
         "h_phys": 0.006135913525932721,
-        "error": 2.653433028854124e-14,
+        "error": 1.5876189252139739e-13,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 2048,
         "h_gamma": 0.0030679615757712823,
         "h_phys": 0.0030679603725700987,
-        "error": 6.800116025829084e-16,
+        "error": 1.3322676295501878e-15,
         "doubling": 2.220446049250313e-16
       },
       {
@@ -310,7 +310,7 @@
         "n": 16384,
         "h_gamma": 0.0003834951969714103,
         "h_phys": 0.0003834951946219139,
-        "error": 7.771561172376096e-16,
+        "error": 6.938893903907228e-16,
         "doubling": 2.220446049250313e-16
       }
     ]
@@ -334,48 +334,48 @@
       8192,
       16384
     ],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 128,
         "h_gamma": 0.04908738521234052,
         "h_phys": 0.04908245704582536,
-        "error": 9.031932522995945e-07,
+        "error": 5.325143162038248e-06,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 256,
         "h_gamma": 0.02454369260617026,
         "h_phys": 0.02454307657144068,
-        "error": 7.316564909487511e-09,
+        "error": 4.37132625652481e-08,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 512,
         "h_gamma": 0.01227184630308513,
         "h_phys": 0.012271769298309598,
-        "error": 5.7707172373966387e-11,
+        "error": 3.4587721575718433e-10,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 1024,
         "h_gamma": 0.006135923151542565,
         "h_phys": 0.006135913525932721,
-        "error": 4.5197179332490123e-13,
+        "error": 2.7110536038321698e-12,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 2048,
         "h_gamma": 0.0030679615757712823,
         "h_phys": 0.0030679603725700987,
-        "error": 3.552713678800501e-15,
+        "error": 2.120525977034049e-14,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 4096,
         "h_gamma": 0.0015339807878856412,
         "h_phys": 0.0015339806374858153,
-        "error": 5.689893001203927e-16,
+        "error": 5.759281940243e-16,
         "doubling": 2.220446049250313e-16
       },
       {
@@ -413,48 +413,48 @@
       8192,
       16384
     ],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 128,
         "h_gamma": 0.04908738521234052,
         "h_phys": 0.04908245704582536,
-        "error": 6.494768880926927e-06,
+        "error": 3.773817293056814e-05,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 256,
         "h_gamma": 0.02454369260617026,
         "h_phys": 0.02454307657144068,
-        "error": 5.4271211968881516e-08,
+        "error": 3.2315866427268247e-07,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 512,
         "h_gamma": 0.01227184630308513,
         "h_phys": 0.012271769298309598,
-        "error": 4.3125192306092686e-10,
+        "error": 2.5826554228558507e-09,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 1024,
         "h_gamma": 0.006135923151542565,
         "h_phys": 0.006135913525932721,
-        "error": 3.383737734452552e-12,
+        "error": 2.0292878488703536e-11,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 2048,
         "h_gamma": 0.0030679615757712823,
         "h_phys": 0.0030679603725700987,
-        "error": 2.653433028854124e-14,
+        "error": 1.5876189252139739e-13,
         "doubling": 2.220446049250313e-16
       },
       {
         "n": 4096,
         "h_gamma": 0.0015339807878856412,
         "h_phys": 0.0015339806374858153,
-        "error": 5.967448757360216e-16,
+        "error": 1.3322676295501878e-15,
         "doubling": 2.220446049250313e-16
       },
       {
@@ -492,7 +492,7 @@
       16384
     ],
     "excluded_n": [],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 1024,
@@ -550,7 +550,7 @@
       16384
     ],
     "excluded_n": [],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 1024,
@@ -608,7 +608,7 @@
       16384
     ],
     "excluded_n": [],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 1024,
@@ -666,7 +666,7 @@
       16384
     ],
     "excluded_n": [],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 1024,
@@ -714,7 +714,7 @@
       8192,
       16384
     ],
-    "fit_rate": 6.870961802621171,
+    "fit_rate": 6.870961802621173,
     "fit_spacing": "h_Gamma_phys",
     "resolved_n": [
       1024,
@@ -724,7 +724,7 @@
       16384
     ],
     "excluded_n": [],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 1024,
@@ -782,7 +782,7 @@
       16384
     ],
     "excluded_n": [],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 1024,
@@ -825,9 +825,13 @@
     "geometry": "starfish_stokes",
     "field": "pressure",
     "kappa": 2,
-    "fit_n": [],
-    "fit_rate": null,
-    "fit_spacing": null,
+    "fit_n": [
+      2048,
+      4096,
+      8192
+    ],
+    "fit_rate": 6.803122686815657,
+    "fit_spacing": "h_Gamma_phys",
     "resolved_n": [
       1024,
       2048,
@@ -837,7 +841,7 @@
     "excluded_n": [
       16384
     ],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 1024,
@@ -880,9 +884,13 @@
     "geometry": "starfish_stokes",
     "field": "pressure",
     "kappa": 3,
-    "fit_n": [],
-    "fit_rate": null,
-    "fit_spacing": null,
+    "fit_n": [
+      2048,
+      4096,
+      8192
+    ],
+    "fit_rate": 6.624339744602891,
+    "fit_spacing": "h_Gamma_phys",
     "resolved_n": [
       1024,
       2048,
@@ -892,7 +900,7 @@
     "excluded_n": [
       16384
     ],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 1024,
@@ -935,9 +943,13 @@
     "geometry": "starfish_stokes",
     "field": "pressure",
     "kappa": 4,
-    "fit_n": [],
-    "fit_rate": null,
-    "fit_spacing": null,
+    "fit_n": [
+      2048,
+      4096,
+      8192
+    ],
+    "fit_rate": 6.3753306328859365,
+    "fit_spacing": "h_Gamma_phys",
     "resolved_n": [
       1024,
       2048,
@@ -947,7 +959,7 @@
     "excluded_n": [
       16384
     ],
-    "policy": "No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.",
+    "policy": "No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.",
     "levels": [
       {
         "n": 1024,

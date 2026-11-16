@@ -20,6 +20,7 @@ a quadrature error that is negligible when δ/h is large enough.
 | `verification/` | Earlier convergence and derivation checks (circle, ellipse, starfish; double layer; Stokes). |
 | `tests/` | Unit and regression tests (`unittest`). |
 | `results/` | Saved CSV/JSON results of the numerical tests. Grid-field arrays (`.npz`) are not included. |
+| `cpp/` | C++17 version of `regbie/` and of the drivers that produce `results/` (FFTW, Eigen, OpenMP); see `cpp/README.md`. |
 
 ## Requirements
 
@@ -38,7 +39,7 @@ Run every command below from the repository root.
 OPENBLAS_NUM_THREADS=1 python3 -m unittest discover -s tests -t .
 ```
 
-The 38 tests take a few seconds.
+The 42 tests take about a minute, most of it in `tests/test_api.py`.
 
 ## Examples
 
@@ -74,6 +75,26 @@ arclength; `b` is the signed distance from each target to the curve
 normals, and for targets on the curve the double layer gives the average of
 the two one-sided limits.
 
+### Layer potentials at arbitrary targets
+
+`regbie.api` finds closest points and signed distances itself, uses the
+regularized kernels only near the curve, and chooses δ (3 node spacings) by
+default:
+
+```python
+from regbie.api import Curve, LayerPotentials
+
+curve = Curve.from_points(points)          # (N, 2), counterclockwise; or Curve.from_derivatives(...)
+layers = LayerPotentials(curve, n=len(points), order=7)
+u = layers.single_layer(f, targets) + layers.double_layer(g, targets)    # Laplace
+v = layers.stokeslet(f2, targets) + layers.stresslet(q, targets)         # Stokes velocity
+p = layers.stokes_pressure(f2, q, targets)                               # Stokes pressure
+```
+
+Densities are given at the nodes `layers.parameters` (t_k = 2πk/n); see the
+docstring of `regbie/api.py` for the conventions and `examples/layer_potentials.py`
+for a complete run. The C++ library in `cpp/` has the same interface.
+
 ## Reproducing the figures
 
 Plotting reads only the saved data and writes PDFs to `figures/`:
@@ -81,7 +102,7 @@ Plotting reads only the saved data and writes PDFs to `figures/`:
 ```sh
 export OPENBLAS_NUM_THREADS=1 MPLBACKEND=Agg
 python3 -m experiments.plot_revised_convergence    # circle, kite, starfish
-python3 -m experiments.plot_revision_figures       # corrections, on-curve stresslet, near-curve limits, choice of δ, grid widths
+python3 -m experiments.plot_revision_figures       # corrections, near-curve limits, choice of δ, grid widths
 python3 -m experiments.plot_revised_grid_figures   # Cartesian grid convergence, exact-data control, stencils
 ```
 

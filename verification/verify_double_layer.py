@@ -8,12 +8,7 @@ from regbie.regularized_slp import coefficients
 from regbie.regularized_dlp import smoothing_over_r2
 
 
-def qpoly(u, p, lam=0., surface=False):
-    if surface:
-        if p == 3: return np.ones_like(u)
-        if p == 5: return 1-2*u/3
-        if p == 7: return 1-4*u/3+4*u*u/15
-        raise ValueError(p)
+def qpoly(u, p, lam=0.):
     result = np.ones_like(u)
     for k, c in enumerate(coefficients(p, lam), 1):
         result += (-1)**k*c*u**k
@@ -41,17 +36,12 @@ def check_moments():
                 identity_error = max(identity_error, abs(moment-related))
                 if j < (p-1)//2:
                     residual = max(residual, abs(moment))
-        for j in range(1, (p-1)//2):
-            moment = 2*quad(lambda t: t**(2*j)*np.exp(-t*t)*
-                            qpoly(np.array(t*t), p, surface=True),
-                            0, np.inf, epsabs=1e-12)[0]
-            residual = max(residual, abs(moment))
     assert residual < 2e-11, residual
     assert identity_error < 2e-10, identity_error
     return residual, identity_error
 
 
-def circle_dlp(theta, delta, n, p, offset, surface=False):
+def circle_dlp(theta, delta, n, p, offset):
     t = 2*np.pi*np.arange(n)/n
     rho = 1+offset*delta
     d = t[None, :]-theta[:, None]
@@ -59,7 +49,7 @@ def circle_dlp(theta, delta, n, p, offset, surface=False):
     r2 = (rho-1)**2+4*rho*np.sin(d/2)**2
     numerator = 1-rho+2*rho*np.sin(d/2)**2
     u = r2/delta**2
-    ratio = smoothing_over_r2(r2, delta, p, offset*delta, surface)
+    ratio = smoothing_over_r2(r2, delta, p, offset*delta)
     chi = 1. if offset < 0 else (0. if offset > 0 else .5)
     g0 = 1+.7*np.cos(3*theta)
     density_difference = -1.4*np.sin(1.5*(t[None, :]+theta[:, None]))*np.sin(1.5*d)
@@ -75,15 +65,14 @@ def main():
     theta = 2*np.pi*np.arange(97)/97
     rows = []
     summary = []
-    for label, offset, surface in [('on', 0., False), ('inside', -.5, False),
-                                    ('outside', .5, False), ('on_special', 0., True)]:
+    for label, offset in [('on', 0.), ('inside', -.5), ('outside', .5)]:
         for p,q in [(3, 2/3), (5, 4/5), (7, 5/7)]:
             group = []
             for n in [64, 128, 256, 512, 1024, 2048]:
                 h = 2*np.pi/n
                 delta = h**q
-                v, exact = circle_dlp(theta, delta, n, p, offset, surface)
-                fine, _ = circle_dlp(theta, delta, 4*n, p, offset, surface)
+                v, exact = circle_dlp(theta, delta, n, p, offset)
+                fine, _ = circle_dlp(theta, delta, 4*n, p, offset)
                 err = np.max(np.abs(v-exact))
                 qerr = np.max(np.abs(v-fine))
                 row = dict(case=label, p=p, q=q, n=n, h=h, delta=delta,

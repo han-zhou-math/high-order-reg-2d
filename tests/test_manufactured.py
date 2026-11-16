@@ -39,8 +39,6 @@ class ManufacturedTests(unittest.TestCase):
                                closest_t=theta,b=b,chunk_size=1)
             np.testing.assert_allclose(value,[2,1,0],atol=0)
             self.assertTrue(np.isfinite(smoothing_over_r2(0.,.05,p)))
-        with self.assertRaises(ValueError):
-            smoothing_over_r2(.01,.05,7,b=.01,surface=True)
 
     def test_green_representation_convergence_starfish(self):
         theta=2*np.pi*np.arange(37)/37

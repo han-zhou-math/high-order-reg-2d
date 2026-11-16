@@ -45,12 +45,12 @@ def run_circle_layers(output):
                 angle = np.arctan2(targets[:, 1], targets[:, 0])
                 sn = single_layer(curve, circle_density, targets, delta, n, order, b)
                 dn = double_layer(curve, circle_density, targets, delta, n, order,
-                                  closest_t=theta, b=b, surface=(lam == 0))
+                                  closest_t=theta, b=b)
                 sn_hi = single_layer(curve, circle_density, targets, delta,
                                      OVERSAMPLE_FACTOR * n, order, b)
                 dn_hi = double_layer(curve, circle_density, targets, delta,
                                      OVERSAMPLE_FACTOR * n, order,
-                                     closest_t=theta, b=b, surface=(lam == 0))
+                                     closest_t=theta, b=b)
                 side = "average" if lam == 0 else ("inside" if lam < 0 else "outside")
                 se = np.max(np.abs(sn - exact_circle_single(radius, angle)))
                 de = np.max(np.abs(dn - exact_circle_double(radius, angle, side)))

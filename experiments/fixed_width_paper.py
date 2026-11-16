@@ -61,8 +61,10 @@ def metadata():
         for field in fields:
             for k in STYLE:
                 rows = series(geometry, field, k)
-                # Explicit common physical-spacing fit only for kite and velocity.
-                fit_n = [4096, 8192, 16384] if field in ['laplace', 'velocity'] else []
+                # Kite and velocity: 2^12-2^14. Pressure: 2^11-2^13, since its
+                # 2^14 level is at roundoff and fails the resolved() test.
+                fit_n = ([4096, 8192, 16384] if field in ['laplace', 'velocity']
+                         else [2048, 4096, 8192] if field == 'pressure' else [])
                 fit = [r for r in rows if r['n'] in fit_n]
                 assert all(resolved(r) for r in fit)
                 rate = float(np.polyfit(np.log([r['h_phys'] for r in fit]),
@@ -72,7 +74,7 @@ def metadata():
                     fit_spacing='h_Gamma_phys' if fit else None,
                     resolved_n=[r['n'] for r in rows if resolved(r)],
                     excluded_n=[r['n'] for r in rows if not resolved(r)],
-                    policy='No circle or pressure fits; slope guides only. Hollow markers are excluded from order assessment.',
+                    policy='No circle fits; pressure fitted over 2^11-2^13. Hollow markers are excluded from order assessment.',
                     levels=rows))
     (ROOT / 'paper_fit_metadata.json').write_text(json.dumps(records, indent=2)+'\n')
 

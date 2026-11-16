@@ -68,14 +68,14 @@ def check_closest_points(curve, theta, y, b):
     return worst
 
 
-def reconstruct(curve, theta, y, b, delta, n, p, surface=False):
+def reconstruct(curve, theta, y, b, delta, n, p):
     f,g = densities(curve)
     s = single_layer(curve, f, y, delta, n, p, b)
-    d = double_layer(curve, g, y, delta, n, p, closest_t=theta, b=b, surface=surface)
+    d = double_layer(curve, g, y, delta, n, p, closest_t=theta, b=b)
     return s, d
 
 
-def run(output, ns, shape='starfish', surface=False, offset_scale='delta'):
+def run(output, ns, shape='starfish', offset_scale='delta'):
     curve = {'starfish': starfish, 'circle': circle}[shape]
     theta = 2*np.pi*np.arange(97)/97
     rows = []
@@ -91,9 +91,8 @@ def run(output, ns, shape='starfish', surface=False, offset_scale='delta'):
                 # for every subsequent, smaller normal offset.
                 if n == ns[0] and b != 0:
                     worst_geometry = max(worst_geometry, check_closest_points(curve, theta, y, b))
-                special = surface and b == 0
-                s,d = reconstruct(curve, theta, y, b, delta, n, p, special)
-                sf,df = reconstruct(curve, theta, y, b, delta, 4*n, p, special)
+                s,d = reconstruct(curve, theta, y, b, delta, n, p)
+                sf,df = reconstruct(curve, theta, y, b, delta, 4*n, p)
                 err = s+d-exact
                 # Inspect each layer's quadrature change to avoid hiding
                 # cancellation of quadrature errors in the sum.
@@ -123,7 +122,7 @@ def run(output, ns, shape='starfish', surface=False, offset_scale='delta'):
     import matplotlib.pyplot as plt
     fig,axes=plt.subplots(2,2,figsize=(11,8),constrained_layout=True)
     report=['# Manufactured solution: combined single and double layers', '',
-            f'Shape: {shape}. Special on-curve DLP kernels: {surface}.',
+            f'Shape: {shape}.',
             'Representation: u = S[q_plus-q_minus] + D[u_minus-u_plus].',
             'On the curve the reference is (u_minus+u_plus)/2.',
             f'Near targets use b=±{offset_scale}/2; delta=h^q; h=2*pi/N.',
@@ -174,9 +173,8 @@ if __name__=='__main__':
     parser.add_argument('--shape',choices=['starfish','circle'],default='starfish')
     parser.add_argument('--output',type=Path,default=Path('results/manufactured'))
     parser.add_argument('--ns',type=int,nargs='+',default=[128,256,512,1024,2048,4096,8192])
-    parser.add_argument('--surface',action='store_true',help='use special DLP kernels on the curve')
     parser.add_argument('--offset-scale',choices=['delta','h'],default='delta')
     args=parser.parse_args()
     if min(args.ns)<4 or len(args.ns)<3 or any(b<=a for a,b in zip(args.ns,args.ns[1:])):
         parser.error('ns must contain at least three increasing integers >=4')
-    run(args.output,args.ns,args.shape,args.surface,args.offset_scale)
+    run(args.output,args.ns,args.shape,args.offset_scale)

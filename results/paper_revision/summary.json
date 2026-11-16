@@ -351,11 +351,6 @@
       "coefficient_seconds": "0.0"
     }
   ],
-  "reduced_rates": {
-    "3": 2.9884829291049724,
-    "5": 4.971700080511822,
-    "7": 6.950787039905157
-  },
   "reference_refinement_max": 6.4619993249164555e-15,
   "quadrature_difference_max": 2.2141320336541937e-12
 }

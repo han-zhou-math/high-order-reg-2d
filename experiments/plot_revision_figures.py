@@ -148,30 +148,6 @@ def plot_near_curve_limits():
     plt.close(fig)
 
 
-def plot_oncurve_stresslet():
-    """Stresslet integral at targets on the curve."""
-    rows = _load("reduced_stresslet.csv")
-    fig, ax = plt.subplots(figsize=(4.9, 2.85))
-    for order, (color, marker) in STYLE.items():
-        selected = sorted((float(row["delta"]), float(row["reduced_error_inf"]),
-                           float(row["full_error_inf"]))
-                          for row in rows if int(row["p"]) == order)
-        width, reduced, full = np.array(selected).T
-        ax.loglog(width, reduced, marker=marker, color=color)
-        ax.loglog(width, full, marker=marker, color=color, mfc=color, ls=":")
-        _reference(ax, width, reduced, order, scale=0.25)
-    _log_axes(ax, (0.00125, 0.005, 0.01, 0.04))
-    ax.set(xlabel=r"Smoothing width $\delta$", ylabel="Maximum vector error")
-    _legend(fig, _order_keys())
-    _legend(fig, [_style_key("Simplified", "-"),
-                  _style_key("General", ":"),
-                  _style_key("Slopes 3, 5, 7", "--")])
-    fig.subplots_adjust(left=0.18, right=0.98, bottom=0.19, top=0.79)
-    align_panels(fig, [ax], columns=1)
-    save_panels(fig, FIGURES / "fig_oncurve_stresslet.pdf")
-    plt.close(fig)
-
-
 def plot_allgrid_widths():
     """Compare two smoothing widths on the same Cartesian grids."""
     with (ROOT / "allgrid_width_comparison.json").open() as stream:
@@ -200,7 +176,6 @@ def plot_allgrid_widths():
 def main():
     configure()
     plot_stokes_corrections()
-    plot_oncurve_stresslet()
     plot_near_curve_limits()
     plot_width_selection()
     plot_allgrid_widths()

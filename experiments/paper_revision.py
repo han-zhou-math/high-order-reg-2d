@@ -98,29 +98,7 @@ def physical_spacing(geometry, n):
     return float(np.linalg.norm(np.roll(points, -1, axis=0)-points, axis=1).max())
 
 
-def reduced_radial_derivative(u, order):
-    """Stable A' for the reduced on-curve stresslet, coefficients frozen."""
-    import math
-    cs = {3: (), 5: (2/3,), 7: (4/3, 4/15)}[order]
-    u = np.asarray(u)
-    v = np.zeros_like(u)
-    vp = np.zeros_like(u)
-    for k, c in enumerate(cs, 1):
-        v += (-1)**k*c*u**(k-1)
-        if k > 1:
-            vp += (-1)**k*c*(k-1)*u**(k-2)
-    bp = np.empty_like(u)
-    small = u < .5
-    acc = np.zeros_like(u[small])
-    for j in range(20, 0, -1):
-        acc = acc*u[small] + (-1)**j*j/math.factorial(j+1)
-    bp[small] = acc
-    ul = u[~small]
-    bp[~small] = (ul*np.exp(-ul)+np.expm1(-ul))/ul**2
-    return bp + np.exp(-u)*(v-vp)
-
-
-def stokes_regularized(n, targets, theta, b, delta, order, reduced=False):
+def stokes_regularized(n, targets, theta, b, delta, order):
     """Return separate corrected/raw SLP,DLP and nonoverlapping stage timings.
 
     Density derivatives and off-node interpolation follow the actual FFT path.
@@ -154,9 +132,6 @@ def stokes_regularized(n, targets, theta, b, delta, order, reduced=False):
     r2 = np.sum(r*r, axis=-1)
     u = r2/delta**2
     a, ap, _ = radial_factors(u, order, np.abs(b[:, None])/delta)
-    if reduced:
-        assert np.all(b == 0), "reduced stresslet is only defined on the curve"
-        ap = reduced_radial_derivative(u, order)
     gf = regularized_kernel(np.sqrt(r2), delta, order, b[:, None])
     rf = np.sum(r*f[None], axis=-1)
     sl_integrand = r*rf[..., None]*a[..., None]/(4*np.pi*delta**2) - gf[..., None]*f[None]/2
@@ -399,25 +374,6 @@ def limits():
                 rows.append(dict(operator="double", p=order, lambda_signed=sign*lam_abs,
                                  delta=delta, n_gamma=n, trace_difference_inf=max_error(dl, dl_limit)))
     save("tiny_lambda.csv", rows)
-    rows = []
-    ref_sl, ref_dl, _ = panel_original(STOKES_STARFISH, on_surface, theta, zero, 48)
-    fine_sl, fine_dl, _ = panel_original(STOKES_STARFISH, on_surface, theta, zero, 64, 2)
-    # Only the subtracted on-curve stresslet is smooth; do not use this SLP
-    # reference for convergence, since its logarithmic singularity is untreated.
-    check = max_error(ref_dl, fine_dl)
-    assert check < 2e-11, check
-    for delta in (.04,.02,.01,.005,.0025,.00125):
-        n = max(8192, 2**int(np.ceil(np.log2(32/delta))))
-        for order in (3,5,7):
-            full = stokes_regularized(n, on_surface, theta, zero, delta, order)
-            reduced = stokes_regularized(n, on_surface, theta, zero, delta, order, reduced=True)
-            fine = stokes_regularized(2*n, on_surface, theta, zero, delta, order, reduced=True)
-            rows.append(dict(p=order, delta=delta, n_gamma=n,
-                             full_error_inf=max_error(full[1], fine_dl),
-                             reduced_error_inf=max_error(reduced[1], fine_dl),
-                             source_doubling_inf=max_error(reduced[1], fine[1]),
-                             reference_refinement_inf=check))
-    save("reduced_stresslet.csv", rows)
 
 
 def manufactured_limits():
@@ -523,15 +479,7 @@ def summarize():
                     best = min(achieved, key=lambda row: float(row["total_seconds"]))
                     threshold.append(dict(tolerance=tolerance, **best))
     save("threshold.csv", threshold)
-    reduced = load("reduced_stresslet.csv")
-    reduced_rates = {}
-    for order in (3, 5, 7):
-        selected = [row for row in reduced if int(row["p"]) == order]
-        coarse, fine = selected[-2:]
-        reduced_rates[order] = float(np.log2(float(coarse["reduced_error_inf"])
-                                             /float(fine["reduced_error_inf"])))
     summary = dict(ablation_rates=rates, threshold=threshold,
-        reduced_rates=reduced_rates,
         reference_refinement_max=max(float(row["reference_refinement_inf"]) for row in rows),
         quadrature_difference_max=max(float(row["source_doubling_inf"]) for row in rows))
     (ROOT/"summary.json").write_text(json.dumps(summary, indent=2)+"\n")

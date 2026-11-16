@@ -32,7 +32,7 @@ def evaluate(label, problem, targets, theta, b, delta, n, side):
         curve = curve_adapter(circle_geometry)
         return {'single': single_layer(curve, circle_density, targets, delta, n, 7, b=b),
                 'double': double_layer(curve, circle_density, targets, delta, n, 7,
-                                      closest_t=theta, b=b, surface=(side=='average'))}
+                                      closest_t=theta, b=b)}
     t = 2*np.pi*np.arange(n)/n
     if label == 'kite_laplace':
         f, g = problem.boundary_densities(t)

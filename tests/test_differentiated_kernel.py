@@ -42,9 +42,6 @@ class DifferentiatedKernelTests(unittest.TestCase):
         raw=double_layer(circle,lambda t: np.ones_like(t),y,.05,1024,7,
                          closest_t=t,b=0.,subtract=False)
         np.testing.assert_allclose(raw,.5,atol=1e-10,rtol=0)
-        with self.assertRaises(ValueError):
-            double_layer(circle,lambda t: t,y,.05,128,7,closest_t=t,b=0.,
-                         subtract=False,surface=True)
 
 
 if __name__=='__main__':
