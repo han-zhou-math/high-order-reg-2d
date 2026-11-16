@@ -1,4 +1,4 @@
-#include "regbie/local_experiments.hpp"
+#include "regbie/experiments/local_experiments.hpp"
 
 #include <algorithm>
 #include <cmath>

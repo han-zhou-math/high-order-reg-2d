@@ -45,6 +45,9 @@ class PeriodicSamples {
 // FFTW planning is not thread safe; every planner call in the library holds this lock.
 std::mutex& fftw_planner_mutex();
 
+// Fourier coefficients fft(values)/n, in the order of np.fft.fftfreq.
+std::vector<std::complex<double>> fourier_coefficients(const std::vector<double>& values);
+
 // d^order/dt^order of periodic samples by FFT (boundary_data.spectral_derivative).
 std::vector<double> spectral_derivative(const std::vector<double>& values, int order = 1);
 std::vector<Vec2> spectral_derivative(const std::vector<Vec2>& values, int order = 1);

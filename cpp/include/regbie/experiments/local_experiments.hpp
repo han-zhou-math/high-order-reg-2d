@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "regbie/geometry.hpp"
-#include "regbie/problems.hpp"
+#include "regbie/experiments/problems.hpp"
 #include "regbie/types.hpp"
 
 namespace regbie {

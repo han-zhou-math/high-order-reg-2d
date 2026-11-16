@@ -30,9 +30,9 @@
 #include "regbie/kernels.hpp"
 #include "regbie/layers.hpp"
 #include "regbie/numerics.hpp"
-#include "regbie/output.hpp"
+#include "regbie/experiments/output.hpp"
 #include "regbie/periodic.hpp"
-#include "regbie/problems.hpp"
+#include "regbie/experiments/problems.hpp"
 #include "regbie/types.hpp"
 
 using namespace regbie;

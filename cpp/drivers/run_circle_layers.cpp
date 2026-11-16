@@ -18,8 +18,8 @@
 
 #include "regbie/io.hpp"
 #include "regbie/layers.hpp"
-#include "regbie/local_experiments.hpp"
-#include "regbie/output.hpp"
+#include "regbie/experiments/local_experiments.hpp"
+#include "regbie/experiments/output.hpp"
 
 using namespace regbie;
 

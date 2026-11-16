@@ -1,22 +1,79 @@
 # C++ version
 
-A C++17 implementation of the computations in this repository: the regularized
-single- and double-layer potentials, the Stokeslet and stresslet integrals, the
-Cartesian-grid reconstruction, and the drivers that produce the data in
-`results/`. Plotting and the analysis of saved data stay in Python; the C++
-drivers write the same CSV and JSON files, so the Python plotting scripts can
-read either.
+A C++17 implementation of the computations in this repository: a library for
+the regularized Laplace and Stokes layer potentials at targets on, near or far
+from a smooth closed curve, the Cartesian-grid reconstruction, and the drivers
+that produce the data in `results/`. Plotting and the analysis of saved data
+stay in Python; the C++ drivers write the same CSV and JSON files, so the
+Python plotting scripts can read either.
+
+## Using the library
+
+Two classes cover most uses; include `regbie/regbie.hpp`.
+
+```cpp
+#include "regbie/regbie.hpp"
+
+// A counterclockwise curve from N points x(2 pi k/N) (or from functions, below).
+regbie::Curve curve = regbie::Curve::from_points(points);   // std::vector<regbie::Vec2>
+regbie::LayerPotentials layers(curve, n);                    // order 7, delta = 3 node spacings
+
+// Densities per unit arclength at the nodes t_k = 2 pi k/n (layers.nodes()[k].x, .normal, ...).
+std::vector<double> s = layers.single_layer(f, targets);      // S f, Laplace
+std::vector<double> d = layers.double_layer(g, targets);      // D g, Laplace
+std::vector<regbie::Vec2> u = layers.stokeslet(f2, targets);  // S f, Stokes
+std::vector<regbie::Vec2> v = layers.stresslet(q, targets);   // D q, Stokes
+std::vector<double> p = layers.stokes_pressure(f2, q, targets);
+```
+
+Targets may lie anywhere. Those within `near * delta` of the curve (default
+`near = 6`) are evaluated with the regularized kernels and local corrections;
+the routine finds their closest points and signed distances itself. The others
+use the trapezoidal rule with the original kernels. The error near the curve is
+O(δ^p) plus a negligible quadrature error; with the default δ = 3Δs (Δs the
+largest node spacing) it is about 1e-8 at n = 4096 on the kite and starfish
+tests (`tests/api_check.cpp`).
+
+| Choice | How |
+|---|---|
+| Curve from functions | `Curve::from_derivatives(t -> {x, x', x'', x'''})`, or `Curve::from_function(t -> GeomPoint)` |
+| Curve from points | `Curve::from_points(points)`: N ≥ 8 points at equally spaced parameters; derivatives by FFT |
+| Order, δ, near-zone size, viscosity | `PotentialOptions{order, delta, near, mu}` as the third argument |
+| Closest points of your own targets | `curve.project(points)` returns parameters t and signed distances b |
+
+Conventions:
+
+| Quantity | Convention |
+|---|---|
+| Orientation | counterclockwise; the normal (τ₂, −τ₁) points outward; clockwise input is rejected |
+| Laplace kernel | G(r) = log(r)/(2π) (note the sign); S f = ∫ G f ds, D g = ∫ ∂G/∂n_x g ds |
+| Densities | per unit arclength, given at the n nodes |
+| Signed distance | negative inside, positive outside |
+| Representation | u harmonic inside: S(−∂u/∂n) + D(u) = u inside, 0 outside. Stokes flow inside with viscosity μ, q = u and f = σn on the curve: S f + D q = u inside, 0 outside; `stokes_pressure(f, q)` = p inside, 0 outside |
+| On the curve | the double layers return the average of the two one-sided limits |
+
+The near-curve corrections need 1 + bκ > 0 at every near target (the target lies within a
+curvature radius); otherwise the routines throw and ask for a larger n or a smaller δ.
+`examples/layer_potentials.cpp` is a complete program. The Python package has the
+same interface in `regbie/api.py` (`Curve`, `LayerPotentials`), with
+`examples/layer_potentials.py`.
+
+The lower-level routines remain available: `layers.hpp` evaluates the layer
+potentials for given closest parameters and signed distances, and
+`kernels.hpp` gives the regularized kernels and their coefficients.
 
 ## Layout
 
 | Folder | Contents |
 |---|---|
-| `include/regbie/`, `src/` | Library `regbie`. `kernels`: coefficients a_k(λ), G_δ, T/r², radial factors, λN₀. `layers`: single and double layer, Laplace, pressure and Stokes evaluators. `geometry`: curves, point-in-curve test, closest points. `periodic`: trigonometric interpolation, spectral derivatives, pressure densities. `grid`: stencils, nine-point Laplacian, fourth-order gradient, fast sine-transform solver. `problems`: the kite (Laplace) and starfish (Stokes) tests. `io`: CSV and JSON in the formats the Python code writes. `numerics`: quadrature, bounded minimization, FFT lengths, fits. |
+| `include/regbie/`, `src/` | Library `regbie`. `curve`, `potentials`: the interface above. `kernels`: coefficients a_k(λ), G_δ, T/r², radial factors, λN₀. `layers`: layer potentials for given closest points, Laplace, pressure and Stokes evaluators. `geometry`: frames, point-in-curve test, closest points. `periodic`: trigonometric interpolation, spectral derivatives, pressure densities. `grid`: stencils, nine-point Laplacian, fourth-order gradient, fast sine-transform solver. `io`: CSV and JSON in the formats the Python code writes. `numerics`: quadrature, bounded minimization, FFT lengths, fits. |
+| `include/regbie/experiments/`, `src/experiments/` | Library `regbie_experiments`, used only by the drivers: the kite and starfish test problems, the Cartesian-grid reconstruction, fixed-width and local-test helpers. |
+| `examples/` | `layer_potentials`: the interface on an ellipse given by points. |
 | `drivers/` | One program per Python driver (see below). |
-| `tests/` | `core_values`: prints core-library values for `tools/check_core.py`. |
-| `tools/` | `check_core.py`: compares `core_values` with the Python code. |
+| `tests/` | `api_check`: accuracy of the interface against exact solutions. `core_values`: prints core-library values for `tools/check_core.py`. |
+| `tools/` | `check_core.py`, `compare_results.py`: comparisons with the Python code. |
 
-## Building
+## Building and installing
 
 Requirements: a C++17 compiler with OpenMP, CMake 3.20 or later, FFTW 3, and
 Eigen 3.4 (downloaded by CMake if not installed). On OSC Cardinal:
@@ -25,10 +82,26 @@ Eigen 3.4 (downloaded by CMake if not installed). On OSC Cardinal:
 module load gcc/13.2.0 mvapich/4.1 fftw/3.3.10 cmake/3.25.2
 cmake -S cpp -B cpp/build
 cmake --build cpp/build -j 8
+cpp/build/api_check          # accuracy check of the interface
 ```
 
 Run every program from the repository root. The number of threads is set by
 `OMP_NUM_THREADS`.
+
+To use the library from another CMake project, install it and link `regbie::regbie`:
+
+```sh
+cmake -S cpp -B cpp/build -DREGBIE_BUILD_EXPERIMENTS=OFF -DCMAKE_INSTALL_PREFIX=$HOME/.local
+cmake --build cpp/build -j 8 && cmake --install cpp/build
+```
+
+```cmake
+find_package(regbie REQUIRED)                 # with CMAKE_PREFIX_PATH=$HOME/.local
+target_link_libraries(myprogram PRIVATE regbie::regbie)
+```
+
+The installed headers exclude `experiments/`; when Eigen was downloaded, its
+headers are installed with the library.
 
 ## Output
 

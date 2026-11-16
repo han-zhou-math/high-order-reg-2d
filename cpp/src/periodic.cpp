@@ -111,6 +111,13 @@ std::vector<double> PeriodicSamples::at_grid(int n, int c) const {
   return at(periodic_nodes(n), c);
 }
 
+std::vector<std::complex<double>> fourier_coefficients(const std::vector<double>& values) {
+  std::vector<std::complex<double>> data(values.begin(), values.end());
+  auto c = dft(data, FFTW_FORWARD);
+  for (auto& v : c) v /= static_cast<double>(values.size());
+  return c;
+}
+
 std::vector<double> spectral_derivative(const std::vector<double>& values, int order) {
   const int n = static_cast<int>(values.size());
   const auto modes = fftfreq_modes(n);

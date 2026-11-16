@@ -12,7 +12,7 @@
 #include "regbie/kernels.hpp"
 #include "regbie/layers.hpp"
 #include "regbie/periodic.hpp"
-#include "regbie/problems.hpp"
+#include "regbie/experiments/problems.hpp"
 #include "regbie/special.hpp"
 
 using namespace regbie;

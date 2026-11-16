@@ -20,14 +20,14 @@
 #include <string>
 #include <vector>
 
-#include "regbie/allgrid.hpp"
+#include "regbie/experiments/allgrid.hpp"
 #include "regbie/io.hpp"
 #include "regbie/kernels.hpp"
 #include "regbie/layers.hpp"
 #include "regbie/numerics.hpp"
-#include "regbie/output.hpp"
+#include "regbie/experiments/output.hpp"
 #include "regbie/periodic.hpp"
-#include "regbie/problems.hpp"
+#include "regbie/experiments/problems.hpp"
 
 using namespace regbie;
 

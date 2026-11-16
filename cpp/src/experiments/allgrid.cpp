@@ -1,4 +1,4 @@
-#include "regbie/allgrid.hpp"
+#include "regbie/experiments/allgrid.hpp"
 
 #include <algorithm>
 #include <cmath>

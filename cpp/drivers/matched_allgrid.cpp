@@ -14,9 +14,9 @@
 #include <string>
 #include <vector>
 
-#include "regbie/allgrid.hpp"
+#include "regbie/experiments/allgrid.hpp"
 #include "regbie/io.hpp"
-#include "regbie/output.hpp"
+#include "regbie/experiments/output.hpp"
 
 using namespace regbie;
 

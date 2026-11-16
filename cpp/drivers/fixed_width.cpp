@@ -21,11 +21,11 @@
 #include <string>
 #include <vector>
 
-#include "regbie/fixed_width.hpp"
+#include "regbie/experiments/fixed_width.hpp"
 #include "regbie/io.hpp"
-#include "regbie/local_experiments.hpp"
-#include "regbie/output.hpp"
-#include "regbie/problems.hpp"
+#include "regbie/experiments/local_experiments.hpp"
+#include "regbie/experiments/output.hpp"
+#include "regbie/experiments/problems.hpp"
 
 using namespace regbie;
 

@@ -11,7 +11,7 @@
 
 #include "regbie/grid.hpp"
 #include "regbie/io.hpp"
-#include "regbie/problems.hpp"
+#include "regbie/experiments/problems.hpp"
 
 namespace regbie {
 
